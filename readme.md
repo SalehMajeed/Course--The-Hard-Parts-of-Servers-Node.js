@@ -81,15 +81,19 @@ server.listen(80);
 
 ![http code working](img/http/step1.jpg)
 
-send message/request -> http -> format
+![http code working](img/http/step2.jpg)
+
+this is the work done by the server.
+
+data is in http format. headers use to metadata and body for the data.
+
+send message -> http -> format
 
 end() -> in the node set out http data
 
-data -> chunks
+data -> collection of chunks
 
-node must be restart for change.
-
-data is in http format so headers use to metadata and body for the data.
+node must be restart for every change but we can use nodemon to get rid from restart again and again.
 
 ssh used for interfacing with computer.
 
