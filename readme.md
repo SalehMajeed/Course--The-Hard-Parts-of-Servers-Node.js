@@ -142,7 +142,7 @@ js way to track code.
 
 json data are partially in buffer.
 
-onclose event take all stringify json and turned into object.
+onClose event take all stringify json and turned into object.
 
 # Streams
 
@@ -156,11 +156,13 @@ function cleanTweets(tweetsToClean) {
 function doOnNewBatch(data) {
 	cleanedTweets += cleanTweets(data);
 }
-const accessTweetsArchive = fs.createReadStream('./tweetsArchive.json');
+const accessTweetsArchive = fs.createReadStream('./file.json');
 accessTweetsArchive.on('data', doOnNewBatch);
 ```
 
 ![code work](img/stream.jpg)
+
+# Asynchronicity in Node
 
 Some queues in nodejs ->
 
