@@ -97,12 +97,31 @@ node must be restart for every change but we can use nodemon to get rid from res
 
 ssh used for interfacing with computer.
 
-events used on server for handling conditions. like client side error etc.
+# Event & Error Handling
+
+events used on server for handling conditions like client side error etc.
 
 http -> in node -> open socket
 and return object.
 
 error comes first as parameter in node.
+
+```javascript
+function doOnIncoming(incomingData, functionsToSetOutgoingData) {
+	functionsToSetOutgoingData.end('Welcome to Twitter');
+}
+function doOnError(infoOnError) {
+	console.error(infoOnError);
+}
+const server = http.createServer();
+server.listen(80);
+server.on('request', doOnIncoming);
+server.on('clientError', doOnError);
+```
+
+![code work](img/event.jpg)
+
+# File System
 
 callstack ->
 js way to track code.
