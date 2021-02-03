@@ -171,3 +171,27 @@ Some queues in nodejs ->
 3. CheckQueue.
 4. CloseQueue.
 5. MicrotaskQueue it has higher priority it's actually is two.
+
+```javascript
+function useImportedtweets(errorData, data) {
+	const tweets = JSON.parse(data);
+	console.log(tweets.tweet1);
+}
+function immediately() {
+	console.log('Run me last');
+}
+function printHello() {
+	console.log('Hello');
+}
+function blockFor500ms() {
+	// Block JS thread DIRECTLY for 500 ms
+	// With e.g. a for loop with 5m elements
+}
+setTimeout(printHello, 0);
+fs.readFile('./file.json', useImportedtweets);
+blockFor500ms();
+console.log('Me first');
+setImmediate(immediately);
+```
+
+![code work](img/asynchronous.jpg)
