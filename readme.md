@@ -123,12 +123,44 @@ server.on('clientError', doOnError);
 
 # File System
 
+```javascript
+function cleanTweets(tweetsToClean) {
+	// code that removes bad tweets
+}
+function useImportedtweets(errorData, data) {
+	const cleanedTweetsJson = cleanTweets(data);
+	const tweetsObj = JSON.parse(cleanedTweetsJson);
+	console.log(tweetsObj.tweet2);
+}
+fs.readFile('./tweets.json', useImportedtweets);
+```
+
+![code work](img/file_system.jpg)
+
 callstack ->
 js way to track code.
 
 json data are partially in buffer.
 
 onclose event take all stringify json and turned into object.
+
+# Streams
+
+data can be get into the batches in the background simultaneously. default batch size is 64k byte.
+
+```javascript
+let cleanedTweets = '';
+function cleanTweets(tweetsToClean) {
+	// algorithm to remove bad tweets from `tweetsToClean`
+}
+function doOnNewBatch(data) {
+	cleanedTweets += cleanTweets(data);
+}
+const accessTweetsArchive = fs.createReadStream('./tweetsArchive.json');
+accessTweetsArchive.on('data', doOnNewBatch);
+```
+
+![code work](img/stream.jpg)
 
 Some queues in nodejs ->
 
